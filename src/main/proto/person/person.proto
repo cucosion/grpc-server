@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package person;
+
+option java_package = "com.ing.ipa.person";
+option java_multiple_files = true;
+
+
+message Person {
+    int64 id = 1;
+    int64 orgId = 2;
+    string firstName = 3;
+    string lastName = 4;
+    string resume = 5;
+    double salary = 6;
+}
+message PersonGetRequest {
+    string firstName = 1;
+}
+
+message PersonGetResponse {
+    Person person = 1;
+}
+
+message PersonSetRequest {
+    Person person = 1;
+}
+
+message PersonSetResponse {
+    string firstName = 1;
+
+}
+message PersonDeleteRequest {
+    string id=1;
+}
+
+message PersonDeleteResponse {
+    string id = 1;
+
+}
+
+service PersonService {
+    // Unary
+    rpc GetPerson(PersonGetRequest) returns (PersonGetResponse) {};
+    rpc SetPerson(PersonSetRequest) returns (PersonSetResponse) {};
+    rpc DeletePerson(PersonDeleteRequest) returns (PersonDeleteResponse) {};
+
+
+}
